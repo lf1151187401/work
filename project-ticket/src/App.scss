@@ -1,0 +1,41 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+.My_Login {
+  width: 100%;
+  height: 100%;
+  // background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581333443597&di=371525e7c4acbed127ef14b4da031559&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201604%2F27%2F134028g77flxpnxdsxpczi.png")
+  //   no-repeat;
+  // background-size: 100%;
+  overflow: hidden;
+}
+.Login-main {
+  width: 350px;
+  height: 350px;
+  border: 1px solid #ccc;
+  margin: 350px auto;
+  .ant-form {
+    margin: 80px 50px;
+  }
+}
+
+.login-form-button {
+  width: 100%;
+}
+// .ant-form-horizontal {
+//   margin: 50px;
+// }
+// .login-form {
+//   margin: 50px;
+// }
