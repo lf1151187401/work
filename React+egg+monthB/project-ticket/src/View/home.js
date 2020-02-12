@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { withRouter } from "react-router-dom"
 function mapStateToProps(state) {
     return {
         list: state.AllData
@@ -21,13 +21,18 @@ function mapDispatchToProps(dispatch) {
 class home extends Component {
     state = {
         ind: 0,
+        callback: item => true,
         topList: [
             {
-                type: "全部"
+                type: "全部",
+                callback: item => true
             }, {
-                type: "正在进行"
+                type: "正在进行",
+                callback: item => item.deadline > new Date().getTime()
             }, {
-                type: "已结束"
+                type: "已结束",
+                callback: item => item.deadline <= new Date().getTime()
+
             }
         ]
     }
@@ -38,10 +43,14 @@ class home extends Component {
             this.props.getList(res.data.data)
         }
     }
-    tab = (index) => {
+    tab = (index, cbk) => {
         this.setState({
-            ind: index
+            ind: index,
+            callback: cbk
         })
+    }
+    jump = () => {
+        this.props.history.push({ pathname: "/ticket" })
     }
     render() {
         return (
@@ -49,7 +58,7 @@ class home extends Component {
                 <header className="header">
                     <div className="home_left">《</div>
                     <div className="home_mid">投票</div>
-                    <div className="home_right">发起投票</div>
+                    <div className="home_right" onClick={() => { this.jump() }}>发起投票</div>
                 </header>
                 <main className="main">
                     <div className="content">
@@ -57,7 +66,7 @@ class home extends Component {
                             {
                                 this.state.topList.map((item, index) => {
                                     return <span key={index} onClick={() => {
-                                        this.tab(index)
+                                        this.tab(index, item.callback)
                                     }} className={this.state.ind === index ? "active" : ""}>{item.type}</span>
                                 })
                             }
@@ -65,7 +74,7 @@ class home extends Component {
                         <div className="home_main_main">
                             <ul className="ul">
                                 {
-                                    this.props.list.map((item, index) => {
+                                    this.props.list.filter(this.state.callback).map((item, index) => {
                                         return <li key={index}>
                                             <div className="li_left">
 
@@ -96,4 +105,4 @@ class home extends Component {
 
 export default connect(
     mapStateToProps, mapDispatchToProps
-)(home);
+)(withRouter(home));

@@ -24,7 +24,7 @@ body {
   width: 350px;
   height: 350px;
   border: 1px solid #ccc;
-  margin: 350px auto;
+  margin: 150px auto;
   .ant-form {
     margin: 80px 50px;
   }
@@ -113,4 +113,48 @@ body {
 .active {
   background: red;
   color: #fff;
+}
+.ticket {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.t_header {
+  width: 100%;
+  height: 45px;
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.t_main {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  div {
+    width: 90%;
+    margin: 10px 5%;
+    input {
+      width: 80%;
+    }
+    select {
+      width: 30%;
+    }
+  }
+  button {
+    width: 90%;
+    height: 40px;
+    margin: 10px 5%;
+  }
+}
+.box {
+  height: 30px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    color: red;
+  }
 }

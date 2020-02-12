@@ -1,5 +1,6 @@
 import Login from "../View/Login"
 import Home from "../View/home"
+import Ticket from "../View/ticket"
 let Routers = [
     {
         path: "/login",
@@ -8,6 +9,10 @@ let Routers = [
     {
         path: "/home",
         component: Home
+    },
+    {
+        path:"/ticket",
+        component:Ticket
     },
     {
         path: "/",
