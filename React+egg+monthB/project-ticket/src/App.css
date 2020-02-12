@@ -35,3 +35,89 @@ body {
 .login-form-button {
   width: 100%;
 }
+
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  height: 45px;
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main {
+  flex: 1;
+  height: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.home_main_top {
+  width: 80%;
+  height: 45px;
+  border: 1px solid #ccc;
+  margin: 0 10%;
+  display: flex;
+}
+
+.home_main_top span {
+  flex: 1;
+  text-align: center;
+  line-height: 45px;
+}
+
+.ul li {
+  width: 90%;
+  height: 100px;
+  border: 1px solid #ccc;
+  margin: 10px 5%;
+  display: flex;
+}
+
+.ul li .li_left {
+  flex: 3;
+  border: 1px solid #ccc;
+}
+
+.ul li .li_right {
+  flex: 7;
+  display: flex;
+  flex-direction: column;
+}
+
+.ul li .li_right .li_top {
+  flex: 1;
+  display: flex;
+}
+
+.ul li .li_right .li_top span {
+  flex: 1;
+  text-align: center;
+  line-height: 50px;
+}
+
+.ul li .li_right .li_bottom {
+  flex: 1;
+  display: flex;
+}
+
+.ul li .li_right .li_bottom span {
+  flex: 1;
+  text-align: center;
+  line-height: 50px;
+}
+
+.active {
+  background: red;
+  color: #fff;
+}
