@@ -15,33 +15,46 @@ function mapDispatchToProps(dispatch) {
 
 class ticket extends Component {
     state = {
-        Radio: 1,
-        Nname: 1,
+        isRadio: 1,
+        anonymous: 1,
         title: "",
-        content: "",
+        description: "",
         option: [],
         deadline: null,
     }
-    submit = () => {
-        if (this.state.title === "" || this.state.content === "") {
+    // 提交
+    submit = async () => {
+        if (this.state.title === "" || this.state.description === "") {
             alert("请填权信息！！");
             return
         }
-        alert("提交成功")
+        let res = await this.$http("post", "/api/add", this.state)
+        console.log(res)
+        if (res.data.code === 0) {
+            alert(res.data.msg);
+            return
+        }
+        if (res.data.code === 1) {
+            alert(res.data.msg)
+            return
+        }
         console.log(this.state)
     }
+    // 添加选项
     addInput = () => {
         if (this.refs.Values.value === "") {
             alert("请输入您的选项")
             return
         }
+        let id = JSON.stringify(new Date().getTime())
         this.state.option.push({
-            id: new Date().getTime() + this.state.option.length,
+            id: id.slice(-6),
             value: this.refs.Values.value
         })
 
         this.setState({ option: [...this.state.option] })
     }
+    // 删除
     remover = (id) => {
         let index = this.state.option.findIndex(item => item.id === id)
         this.state.option.splice(index, 1)
@@ -52,6 +65,7 @@ class ticket extends Component {
             this.refs.Values.value = ""
         }
     }
+    // vant 日期 数据
     onChange = (date, dateString) => {
         console.log("data", date, "dataste", dateString);
         let time = new Date(date).getTime()
@@ -69,7 +83,7 @@ class ticket extends Component {
                 </header>
                 <main className="t_main">
                     <div>标题:<input type="text" onChange={(e) => { this.setState({ title: e.target.value }) }} /></div>
-                    <div>描述:<input type="text" onChange={(e) => { this.setState({ content: e.target.value }) }} /></div>
+                    <div>描述:<input type="text" onChange={(e) => { this.setState({ description: e.target.value }) }} /></div>
                     {
                         this.state.option.map((item, index) => {
                             return <div key={item.id} className="box"><span>选项:{index + 1}</span>{item.value}<span onClick={() => {
@@ -80,14 +94,14 @@ class ticket extends Component {
                     <div>选项:<input type="text" ref="Values" /><span onClick={() => { this.addInput() }}>添加</span></div>
                     <div>  <DatePicker onChange={(this.onChange)} showTime={true} /></div>
                     <div>
-                        <select value={this.state.Radio} onChange={(e) => { this.setState({ Radio: e.target.value }) }}>
+                        <select value={this.state.isRadio} onChange={(e) => { this.setState({ isRadio: e.target.value }) }}>
                             <option value="1">单选</option>
                             <option value="0">多选</option>
                         </select>
                     </div>
 
                     <div>
-                        <select value={this.state.Nname} onChange={(e) => { this.setState({ Nname: e.target.value }) }}>
+                        <select value={this.state.anonymous} onChange={(e) => { this.setState({ anonymous: e.target.value }) }}>
                             <option value="1">匿名</option>
                             <option value="0">不匿名</option>
                         </select>

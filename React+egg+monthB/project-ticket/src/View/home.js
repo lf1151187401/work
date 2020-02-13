@@ -52,6 +52,9 @@ class home extends Component {
     jump = () => {
         this.props.history.push({ pathname: "/ticket" })
     }
+    XQ = (title, id) => {
+        this.props.history.push({ pathname: "/xq", title, id })
+    }
     render() {
         return (
             <div className="home">
@@ -75,15 +78,16 @@ class home extends Component {
                             <ul className="ul">
                                 {
                                     this.props.list.filter(this.state.callback).map((item, index) => {
-                                        return <li key={index}>
+                                        return <li key={index} onClick={() => {
+                                            this.XQ(item.title, item.id)
+                                        }}>
                                             <div className="li_left">
-
-
+                                                <img src="http://q4.qlogo.cn/headimg_dl?dst_uin=${item.qqunmber}&spec=100" />
                                             </div>
                                             <div className="li_right">
                                                 <div className="li_top">
                                                     <span>{item.name}</span>
-                                                    <span>{item.deadline}111</span>
+                                                    <span>{new Date(parseInt(item.deadline)).toLocaleString()}</span>
                                                 </div>
                                                 <div className="li_bottom">
                                                     <span>{item.title}</span>
