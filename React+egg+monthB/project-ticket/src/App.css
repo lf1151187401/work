@@ -187,3 +187,92 @@ body {
 .box span {
   color: red;
 }
+
+.xq {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.xq_header {
+  width: 100%;
+  height: 45px;
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xq_main {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}
+
+.xq_main_main {
+  width: 100%;
+  height: 100%;
+}
+
+.xq_main_main .title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.xq_main_main .xq_top {
+  flex: 1;
+  display: flex;
+}
+
+.xq_main_main .xq_top div {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+}
+
+.xq_main_main .xq_bottom {
+  flex: 1;
+  display: flex;
+}
+
+.xq_main_main .xq_bottom div {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 60px;
+}
+
+.xq_main_main .options {
+  width: 80%;
+  height: 300px;
+  margin: 0 10%;
+  border: 1px solid #ccc;
+}
+
+.xq_main_main .options p {
+  margin: 10px 50px;
+}
+
+.gray {
+  width: 70%;
+  height: 10px;
+  background: #ccc;
+  margin: 0 15%;
+}
+
+.gray .nei {
+  height: 10px;
+  background: red;
+  display: inline-block;
+  float: left;
+}
+
+.Echart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

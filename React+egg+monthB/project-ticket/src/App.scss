@@ -170,3 +170,78 @@ body {
     color: red;
   }
 }
+.xq {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.xq_header {
+  width: 100%;
+  height: 45px;
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.xq_main {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}
+.xq_main_main {
+  width: 100%;
+  height: 100%;
+  .title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .xq_top {
+    flex: 1;
+    display: flex;
+    div {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+      line-height: 50px;
+    }
+  }
+  .xq_bottom {
+    flex: 1;
+    display: flex;
+    div {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+      line-height: 60px;
+    }
+  }
+  .options {
+    width: 80%;
+    height: 300px;
+    margin: 0 10%;
+    border: 1px solid #ccc;
+    p {
+      margin: 10px 50px;
+    }
+  }
+}
+.gray {
+  width: 70%;
+  height: 10px;
+  background: #ccc;
+  margin: 0 15%;
+  .nei {
+    height: 10px;
+    background: red;
+    display: inline-block;
+    float: left;
+  }
+}
+.Echart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

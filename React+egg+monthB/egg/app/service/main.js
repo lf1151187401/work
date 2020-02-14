@@ -21,6 +21,12 @@ class UserService extends Service {
     async getOption(id) {
         return await this.app.mysql.select("option", { where: { ticket_id: id } })
     }
+
+    async addCount(it) {
+  
+        let { id, ticket_id, option_name, option_id, count } = it
+        return await this.app.mysql.update("option", { id, ticket_id, option_name, option_id, count })
+    }
 }
 
 module.exports = UserService;

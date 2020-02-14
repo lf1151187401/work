@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { DatePicker } from 'antd';
+import { withRouter } from "react-router-dom"
 function mapStateToProps(state) {
     return {
 
@@ -77,7 +78,9 @@ class ticket extends Component {
         return (
             <div className="ticket">
                 <header className="t_header">
-                    <div>《</div>
+                    <div onClick={() => {
+                        this.props.history.push({ pathname: "/home" })
+                    }}>《</div>
                     <div>发起投票</div>
                     <div>...</div>
                 </header>
@@ -116,4 +119,4 @@ class ticket extends Component {
 
 export default connect(
     mapStateToProps, mapDispatchToProps
-)(ticket);
+)(withRouter(ticket));

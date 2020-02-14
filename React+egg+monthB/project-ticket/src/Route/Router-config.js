@@ -2,6 +2,7 @@ import Login from "../View/Login"
 import Home from "../View/home"
 import Ticket from "../View/ticket"
 import xq from "../View/xq"
+import Echarts from "../View/Echart"
 let Routers = [
     {
         path: "/login",
@@ -18,6 +19,10 @@ let Routers = [
     {
         path: "/xq",
         component: xq
+    },
+    {
+        path: "/echarts",
+        component: Echarts
     },
     {
         path: "/",

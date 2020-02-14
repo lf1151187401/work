@@ -54,6 +54,7 @@ class home extends Component {
     }
     XQ = (title, id) => {
         this.props.history.push({ pathname: "/xq", title, id })
+        localStorage.setItem("id", id)
     }
     render() {
         return (
@@ -61,7 +62,7 @@ class home extends Component {
                 <header className="header">
                     <div className="home_left">《</div>
                     <div className="home_mid">投票</div>
-                    <div className="home_right" onClick={() => { this.jump() }}>发起投票</div>
+                    <div className="home_right" onClick={() => { this.jump() }}>发起</div>
                 </header>
                 <main className="main">
                     <div className="content">
