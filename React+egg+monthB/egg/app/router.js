@@ -10,5 +10,5 @@ module.exports = app => {
   router.post('/api/add', controller.add.index);
   router.post('/api/getlist', controller.getlist.index);
   router.post('/api/tp', controller.tp.index);
-
+  router.post("/api/getData", controller.getoptiondata.index)
 };

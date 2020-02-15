@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom"
 import { Radio, Checkbox } from 'antd';
+import Title from 'antd/lib/skeleton/Title';
 function mapStateToProps(state) {
     return {
         titleData: state.titleDATA,
@@ -22,29 +23,37 @@ function mapDispatchToProps(dispatch) {
 }
 
 class xq extends Component {
-    componentDidMount = async () => {
-        let title = this.props.location.title;
-        let id = this.props.location.id;
-        let res = await this.$http("post", "/api/getlist", { title, id })
-        console.log(res, "xq")
-        if (res.data.code === 0) {
-            this.props.AddTowList(res.data.data, res.data.daan)
-        }
+    componentDidMount = () => {
+        this.initData()
     }
     state = {
         value: 0,
         count: 0,
         idArr: [],
-        Radio: ""
+        Radio: "",
+        OptionID: 0,
+        TitleSrc: ""
     }
-
+    initData = async () => {
+        let title = this.props.location.title;
+        let id = this.props.location.id || localStorage.getItem("id");
+        let res = await this.$http("post", "/api/getlist", { title, id })
+        console.log(res, "xq")
+        if (res.data.code === 0) {
+            this.props.AddTowList(res.data.data, res.data.daan)
+        }
+        this.setState({
+            OptionID: id,
+            TitleSrc: title
+        })
+        // console.log(this.state.OptionID, this.state.TitleSrc, "102030405060")
+    }
     onChange = (e, ite) => {
-
-        console.log('radio checked', e.target.value);
+        // console.log('radio checked', e.target.value);
+        console.log(e.target.checked, "radio checked")
         this.setState({
             value: e.target.value,
         });
-        console.log(e.target.checked)
         if (e.target.checked) {
             this.setState({
                 count: this.state.count += 1
@@ -57,27 +66,10 @@ class xq extends Component {
                 this.setState({
                     idArr: this.state.idArr
                 })
-                console.log(this.state.idArr)
             }
-
-            // console.log(this.refs)
-            // let Res = (this.refs.div.clientWidth / this.props.DaanData.length)
-            // this.refs.span.style.width = `${Res * this.state.count}px`
-        } else {
-            this.setState({
-                count: this.state.count -= 1
-            })
-            let index = this.state.idArr.findIndex((item, index) => {
-                return item.id === ite.id
-            })
-            this.state.idArr.splice(index, 1)
-            this.setState({
-                idArr: this.state.idArr
-            })
             console.log(this.state.idArr)
-            // let Res = (this.refs.div.clientWidth / this.props.DaanData.length)
-            // this.refs.span.style.width = `${Res * this.state.count}px`
         }
+
     };
     checkbox = (e, ite) => {
         if (e.target.checked) {
@@ -119,8 +111,15 @@ class xq extends Component {
         let res = await this.$http("post", "/api/tp", { Data: this.state.idArr })
         console.log(res, "res")
         if (res.data.code === 0) {
+            this.initData();
             alert(res.data.msg)
+            localStorage.setItem("title", this.state.TitleSrc)
         }
+    }
+    statistic = () => {
+        let { OptionID, TitleSrc } = this.state
+        console.log(OptionID, "this.props.DaanData")
+        this.props.history.push({ pathname: "/echarts", TitleSrc, OptionID })
     }
     render() {
 
@@ -132,7 +131,7 @@ class xq extends Component {
                     }}>《</div>
                     <div className="xq_mid">投票详情</div>
                     <div className="xq_right" onClick={() => {
-                        this.props.history.push({ pathname: "/echarts" })
+                        this.statistic()
                     }}>统计</div>
                 </header>
                 <main className="xq_main">

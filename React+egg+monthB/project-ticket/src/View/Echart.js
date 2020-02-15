@@ -2,9 +2,25 @@ import React, { Component } from 'react'
 import ReactEchats from "echarts-for-react"
 
 export default class Echarts extends Component {
-
+    state = {
+        id: 0,
+        title: "" || localStorage.getItem("title"),
+        Data: [],
+        count: []
+    }
+    componentDidMount = () => {
+        this.getList()
+    };
     getOtion = () => {
-        const option = {
+        let text = [];
+        let num = [];
+        console.log(this.state.Data, "DataDAta")
+        this.state.Data.forEach((item, index) => {
+            text.push(item.option_name);
+            num.push(item.count);
+        })
+        console.log(text, num)
+        return {
             color: ['#3398DB'],
             tooltip: {
                 trigger: 'axis',
@@ -21,7 +37,7 @@ export default class Echarts extends Component {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    data: text,
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -37,14 +53,27 @@ export default class Echarts extends Component {
                     name: '直接访问',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [10, 52, 200, 334, 390, 330, 220]
+                    data: num
                 }
             ]
         };
 
-        return option;
     }
-  
+    getList = async () => {
+        let id = this.props.location.OptionID
+        // let title = this.props.location.TitleSrc
+        this.setState({
+            id: this.props.location.OptionID,
+            title: this.props.location.TitleSrc || localStorage.getItem("title")
+        })
+        let res = await this.$http("post", "/api/getData", { id })
+        if (res.data.code === 0) {
+            this.setState({
+                Data: res.data.data
+            })
+            console.log(this.state.Data, "Data")
+        }
+    }
     render() {
         return (
             <div className="Echart">
@@ -55,6 +84,9 @@ export default class Echarts extends Component {
                     }}>《</span>
                 </header>
                 <main className="main">
+                    <div className="top_name">
+                        题目:{this.state.title}
+                    </div>
                     <ReactEchats
                         option={this.getOtion()}
                         style={{ height: '350px', width: '375px' }}
