@@ -26,7 +26,7 @@ class AddController extends Controller {
             let ticket_id = data.insertId;
             console.log(option, "option")
             option.forEach(async (item, index) => {
-                let Data = { id: null, ticket_id, option_id: item.id, option_name: item.value }
+                let Data = { id: null, ticket_id, option_id: item.id, option_name: item.value, count: 0 }
                 await ctx.service.main.insertOption(Data);
             })
             ctx.body = { code: 0, msg: "添加成功" }

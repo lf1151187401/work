@@ -92,7 +92,7 @@ class home extends Component {
                                                 </div>
                                                 <div className="li_bottom">
                                                     <span>{item.title}</span>
-                                                    <span>{item.isRadio === 1 ? "多选" : "单选"}</span>
+                                                    <span>{item.isRadio === 1 ? "单选" : "多选"}</span>
                                                 </div>
                                             </div>
                                         </li>

@@ -30,6 +30,7 @@ class ticket extends Component {
             return
         }
         let res = await this.$http("post", "/api/add", this.state)
+        console.log(this.state)
         console.log(res)
         if (res.data.code === 0) {
             alert(res.data.msg);
@@ -39,7 +40,7 @@ class ticket extends Component {
             alert(res.data.msg)
             return
         }
-        console.log(this.state)
+       
     }
     // 添加选项
     addInput = () => {

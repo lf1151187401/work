@@ -151,10 +151,11 @@ class xq extends Component {
 
                                         {
                                             this.props.DaanData.map((it, ind) => {
-                                                return item.isRadio === 0 ?
+                                                return item.isRadio === 1 ?
                                                     <p key={it.id}>
                                                         <Radio.Group onChange={(e) => { this.onChange(e, it) }} value={this.state.value}>
                                                             <Radio value={it.option_name}>{it.option_name}</Radio>
+                                                            <span>共投{it.count}票</span>
                                                         </Radio.Group>
 
                                                     </p>
@@ -162,6 +163,8 @@ class xq extends Component {
                                                         <Checkbox onChange={(e) => {
                                                             this.checkbox(e, it)
                                                         }} value={it.option_name}>{it.option_name}</Checkbox>
+                                                        <span>共投{it.count}票</span>
+
                                                     </p>
                                             })
                                         }

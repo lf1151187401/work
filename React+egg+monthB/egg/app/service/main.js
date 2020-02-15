@@ -12,8 +12,8 @@ class UserService extends Service {
         return await this.app.mysql.insert("list", { id, qqnumber, title, isRadio, anonymous, deadline, description, name })
     }
     async insertOption(data) {
-        let { id, ticket_id, option_id, option_name } = data
-        return await this.app.mysql.insert("option", { id, ticket_id, option_id, option_name })
+        let { id, ticket_id, option_id, option_name, count } = data
+        return await this.app.mysql.insert("option", { id, ticket_id, option_id, option_name, count: 0 })
     }
     async get(id) {
         return await this.app.mysql.select("list", { where: { id: id } })
@@ -23,7 +23,7 @@ class UserService extends Service {
     }
 
     async addCount(it) {
-  
+
         let { id, ticket_id, option_name, option_id, count } = it
         return await this.app.mysql.update("option", { id, ticket_id, option_name, option_id, count })
     }
