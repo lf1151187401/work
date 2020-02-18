@@ -7,11 +7,11 @@ class listController extends Controller {
         let { id } = ctx.request.body;
         let data = await ctx.service.main.get(id)
         console.log(data, "data")
-      
+
         let daan = await ctx.service.main.getOption(id);
         console.log(daan)
-        ctx.body={code:0,data,daan}
-    
+        ctx.body = { code: 0, data, daan }
+
     }
 }
 
